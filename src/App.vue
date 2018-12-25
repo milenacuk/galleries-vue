@@ -1,6 +1,18 @@
 <template>
   <div id="app">
-    <navbar/>
+    <header>
+      <navbar/>
+    </header>
+    <main>
+      <div class="container">
+        <router-view></router-view>
+      </div>
+    </main>
+    <footer class="footer">
+    <div class="container">
+      Galleries 2018.
+    </div>
+  </footer>
   </div>
 </template>
 
@@ -23,5 +35,16 @@ export default {
   text-align: center;
   color: #2c3e50;
   margin-top: 60px;
+}
+.footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 60px;
+    line-height: 60px;
+    background-color: #f5f5f5;
+}
+main {
+  margin-top: 100px;
 }
 </style>
