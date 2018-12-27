@@ -13,7 +13,7 @@ const routes = [
         component: AllGalleries,
         name: 'home',
         meta: {
-            auth:true
+            auth:false
         }
     },
     {   path: '/login',

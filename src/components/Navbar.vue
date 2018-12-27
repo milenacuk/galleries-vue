@@ -2,6 +2,7 @@
     <div>
       <nav class="navbar navbar-dark bg-primary navbar-expand-sm font-italic">
         <!-- <router-link  class="nav-link" to="/">Galleries</router-link> -->
+        <h4>Galleries</h4>
         <div class="collapse navbar-collapse">       
           <ul class="navbar-nav ml-auto"> 
               <li class="nav-item">                                         

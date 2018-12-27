@@ -1,5 +1,6 @@
 import http from './http-service.js';
 
+
 class AuthService{
     login(email,password){
         return http.post('auth/login', {
@@ -7,7 +8,7 @@ class AuthService{
             password
         }).then(({data}) => data);
     }
-    register({first_name, last_name, email, password, password_confirmation, terms}){
+    register(first_name, last_name, email, password, password_confirmation,terms){
         return http.post('auth/register', {
             first_name,
             last_name,
@@ -15,7 +16,13 @@ class AuthService{
             password,
             password_confirmation,
             terms
-        }).then(({data})=> data);
+        }).then(({data})=> data)
+        .catch(error => {
+            return Promise.reject(error.response.data.errors)
+
+        })
+         
+        
     }
 
     setAuthHeaders(token){

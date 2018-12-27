@@ -34,7 +34,7 @@ export default{
                 commit('SET_DATA', {user,token});
                 router.push( { name:'home'});
             }catch(error){
-                commit('SET_ERRORS', error.response ? error.response.data.message : error);
+                commit('SET_ERRORS',  error.response.data.message);
                 // commit('SET_ERRORS', error.response);
             }
         },
@@ -45,9 +45,9 @@ export default{
             commit('SET_DATA', { user: null, token: null});
             router.push({ name: 'login'});
         },
-        async register( {commit}, {first_name, last_name, email, password, password_confirmation, terms}){
+        async register( {commit}, {first_name, last_name, email, password, password_confirmation,terms}){
             try{
-                const{user,token} = await authService.register(first_name, last_name, email, password, password_confirmation, terms);
+                const{user,token} = await authService.register(first_name, last_name, email, password, password_confirmation,terms);
                 localStorage.setItem('user', JSON.stringify(user));
                 localStorage.setItem('token', token);
                 authService.setAuthHeaders(token);
@@ -55,7 +55,7 @@ export default{
                 router.push( { name:'home'});
                 
             } catch(error){
-                commit('SET_ERRORS', error.response ? error.response.data.message : error)
+                commit('SET_ERRORS', error)
                 // commit('SET_ERRORS', error.response);
             }
         }
