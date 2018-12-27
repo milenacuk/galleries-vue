@@ -1,13 +1,19 @@
 import http from './http-service.js';
 
 class AllGalleriesService{
-    getGalleries(page = 1){
-        return http.get('galleries',{ params: { page }})
-            .then(({data}) => data)
+   
+        getGalleries(page = 1, term = '') {
+            return http
+              .get(`galleries?page=${page}&term=${term}`)
+              .then(({ data }) => data.galleries);
+              
+        // return http.get('galleries',{ params: { page }})
+            // .then(({data}) => data)
     }
     getGallery(id){
         return http.get(`galleries/${id}`)
-        .then((response) => response)
+        // .then(({data}) => data)
+        
     }
 }
 

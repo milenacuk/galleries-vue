@@ -25,7 +25,7 @@
       >      
       <button class="btn btn-lg btn-primary btn-block" 
       type="submit">Sign in</button>
-      
+      </form>
     </div>
     <error-form v-if="errors">{{ errors }}</error-form>
 </div>

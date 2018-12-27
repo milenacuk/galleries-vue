@@ -8,11 +8,11 @@
         <router-view></router-view>
       </div>
     </main>
-    <footer class="footer">
+    <!-- <footer class="footer">
     <div class="container">
       Galleries 2018.
     </div>
-  </footer>
+  </footer> -->
   </div>
 </template>
 
