@@ -3,7 +3,7 @@
       <nav class="navbar navbar-expand-lg navbar-dark bg-primary  fixed-top">
       <div class="container">
         <router-link class="navbar-brand" to="/">All Galleries</router-link>
-        <router-link class="navbar-brand" to="#" v-if="user">My Galleries</router-link>
+        <router-link class="navbar-brand" :to="{name:'auth-author-gallery', params: {id:user.id}}" v-if="user" >My Galleries</router-link>
         <router-link class="navbar-brand" to="#" v-if="user">Create New Gallery</router-link>
         <button
           class="navbar-toggler"
@@ -37,6 +37,7 @@
 
 <script>
 import { mapActions, mapGetters } from 'vuex'
+
 export default {
     name: 'Navbar',
     methods: {

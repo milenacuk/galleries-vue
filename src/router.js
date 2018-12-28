@@ -5,6 +5,7 @@ import Register from './components/auth/Register.vue';
 import AllGalleries from './components/AllGalleries.vue';
 import SingleGallery from './components/SingleGallery.vue';
 import AuthorGallery from './components/AuthorGallery.vue';
+import AuthAuthorGallery from './components/AuthAuthorGallery.vue';
 
 Vue.use(VueRouter);
 
@@ -47,6 +48,14 @@ const routes = [
         name: 'author-gallery',
         meta: {
             auth:false
+        }
+    },
+    {
+        path: '/authors-galeries/:id',
+        component: AuthAuthorGallery,
+        name: 'auth-author-gallery',
+        meta: {
+            auth:true
         }
     }
 ];

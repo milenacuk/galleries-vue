@@ -17,6 +17,10 @@ class AllGalleriesService{
         return http.get(`authors/${id}`)
         .then(({data}) => data)
     }
+    getAuthAuthorGallery(id){
+        return http.get(`authors-galeries/${id}`)
+        .then(({data}) => data)
+    }
 }
 
 const allGalleriesService = new AllGalleriesService();
