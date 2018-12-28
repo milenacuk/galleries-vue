@@ -1,26 +1,36 @@
 <template>
     <div>
-      <nav class="navbar navbar-dark bg-primary navbar-expand-sm font-italic">
-        <!-- <router-link  class="nav-link" to="/">Galleries</router-link> -->
-        <h4>Galleries</h4>
-        <div class="collapse navbar-collapse">       
-          <ul class="navbar-nav ml-auto"> 
-              <li class="nav-item">                                         
-                    <router-link  to="/" class="nav-link">All galleries</router-link>                
-            </li>           
-            <li class="nav-item">                             
-              <router-link v-if="!user" to="/login" class="nav-link">Login</router-link>              
+      <nav class="navbar navbar-expand-lg navbar-dark bg-primary  fixed-top">
+      <div class="container">
+        <router-link class="navbar-brand" to="/">All Galleries</router-link>
+        <router-link class="navbar-brand" to="#" v-if="user">My Galleries</router-link>
+        <router-link class="navbar-brand" to="#" v-if="user">Create New Gallery</router-link>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-toggle="collapse"
+          data-target="#navbarResponsive"
+          aria-controls="navbarResponsive"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+              <router-link class="nav-link" to="/login" v-if="!user">Login</router-link>
             </li>
-            <li class="nav-item">          
-              <router-link v-if="!user" to="/register" class="nav-link">Register</router-link>                             
+            <li class="nav-item">
+              <router-link class="nav-link" to="/register" v-if="!user">Register</router-link>
             </li>
-            <li class="navbar-item" >             
-              <!-- <router-link v-if="user" @click="clickLogout" class="nav-link">Logout</router-link> -->
-               <a class="nav-link" @click="onClickLogout" v-if="user">Logout</a>             
-           </li>
-          </ul>                   
+            <li class="nav-item">
+              <a class="nav-link" @click="onClickLogout" v-if="user">Logout</a>
+            </li>
+          </ul>
         </div>
-      </nav> 
+      </div>
+    </nav>  
     </div>
 
 </template>
@@ -52,9 +62,9 @@ export default {
   color: #2c3e50;
   margin-top: 60px;
 } */
-.navbar-brand{
+/* .navbar-brand{
   color: firebrick !important;
-}
+} */
 form {
   margin: 0 auto;
   width: 40%;
@@ -62,6 +72,7 @@ form {
 input {
   border-radius: 10px;
 }
+
 
 
 </style>

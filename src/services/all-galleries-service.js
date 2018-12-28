@@ -5,10 +5,9 @@ class AllGalleriesService{
         getGalleries(page = 1, term = '') {
             return http
               .get(`galleries?page=${page}&term=${term}`)
-              .then(({ data }) => data.galleries);
+              .then(({ data }) =>data.galleries);
               
-        // return http.get('galleries',{ params: { page }})
-            // .then(({data}) => data)
+        
     }
     getGallery(id){
         return http.get(`galleries/${id}`)
