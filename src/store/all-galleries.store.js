@@ -4,7 +4,8 @@ export default{
     state: {
         allGalleries: [],
         errors: null,
-        next_page_url: ''
+        next_page_url: null,
+        // page: 1,
             
     },
     actions: {
@@ -14,13 +15,29 @@ export default{
             }catch(errors){
                 commit('SET_ERRORS', errors)
             }
-        },       
+        }, 
+        async loadMoreAllGalleries({commit}, payload){
+            try{            
+                commit('LOAD_MORE_ALL_GALLERIES', await allGalleriesService.getGalleries(payload));                         
+            }catch(errors){
+                commit('SET_ERRORS', errors)
+            }
+        },      
     },
     mutations: {
         SET_ALL_GALLERIES(state,payload){
-            state.allGalleries = payload.data;    
-            state.next_page_url = payload.next_page_url; 
-            //  console.log(payload.next_page_url)      
+            
+            state.allGalleries = payload.data;
+            // console.log(state.allGalleries);            
+            state.next_page_url = payload.next_page_url;                  
+        },
+
+        LOAD_MORE_ALL_GALLERIES(state,payload){
+            
+            // console.log(state.allGalleries);       
+
+            state.allGalleries = state.allGalleries.concat(payload.data)                      
+            state.next_page_url = payload.next_page_url;                  
         },
         SET_ERRORS(state,payload){
             state.errors = payload;
@@ -32,12 +49,21 @@ export default{
             
                     
         },
+        loadMoreGalleries(state){           
+             return state.allGalleries;  
+            
+                    
+        },
         getErrorsGalleries(state){
             return state.errors;
         },
         getNextPageUrl(state){
             return state.next_page_url;
-        }
+        },
+
+        // getCurrentPage(state) {
+        //     return state.current_page;
+        // }
         
     }
 }

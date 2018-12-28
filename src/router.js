@@ -3,7 +3,8 @@ import VueRouter from 'vue-router';
 import Login from './components/auth/Login.vue';
 import Register from './components/auth/Register.vue';
 import AllGalleries from './components/AllGalleries.vue';
-import SingleGallery from './components/SingleGallery.vue'
+import SingleGallery from './components/SingleGallery.vue';
+import AuthorGallery from './components/AuthorGallery.vue';
 
 Vue.use(VueRouter);
 
@@ -36,6 +37,14 @@ const routes = [
         path: '/galleries/:id',
         component: SingleGallery,
         name: 'single-gallery',
+        meta: {
+            auth:false
+        }
+    },
+    {
+        path: '/author/:id',
+        component: AuthorGallery,
+        name: 'author-gallery',
         meta: {
             auth:false
         }
