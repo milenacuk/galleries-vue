@@ -4,12 +4,7 @@ export default{
     state: {
         allGalleries: [],
         errors: null,
-        next_page_url: null,
-        // oneGallery: {
-        //     images:[]
-        // }
-        // page: 1,
-            
+        next_page_url: null,                 
     },
     actions: {
         async getAllGalleries({commit}, payload){
@@ -26,14 +21,7 @@ export default{
                 commit('SET_ERRORS', errors)
             }
         },  
-        // async storeGallery({commit},gallery){
-        //     try{
-        //         commit('STORE_GALLERY', await allGalleriesService.createGallery(gallery));
-        //     }catch(errors){
-        //         commit('SET_ERRORS',errors);
-        //     }
-            
-        // }    
+         
     },
     mutations: {
         SET_ALL_GALLERIES(state,payload){       
@@ -47,10 +35,8 @@ export default{
         },
         SET_ERRORS(state,payload){
             state.errors = payload;
-        },
-        // STORE_GALLERY(state, payload){        
-        //     state.oneGallery.images = payload.data;           
-        // }
+        }
+        
     },
     getters: {
         getGalleries(state){           
@@ -68,9 +54,7 @@ export default{
         getNextPageUrl(state){
             return state.next_page_url;
         },
-        // getStoreGallery(state){
-        //     return state.oneGallery.images;
-        // }
+       
         
     }
 }

@@ -26,18 +26,37 @@
       </div>
     </b-carousel>
   </div>                
-         
+    <hr>
+    <div class="conteiner" v-for="comment in gallery.comments" :key="comment.id">
+        <p>Author: {{ comment.user.first_name }} {{ comment.user.last_name }}</p>
+        <p>Created: {{ comment.created_at }}</p>
+        <p>{{ comment.body }}</p>
+        <!-- <button v-if="comment.user_id"
+        class = 'btn btn-outline-secondary'
+        @click="deleteComment(comment.id,index)">Delete</button> -->
+        <hr>
+    </div>
+    <div class="form-group">
+            <label>Leave a comment</label>
+            <textarea 
+                v-model="newComment.body"
+                class="form-control" 
+                rows="5">
+            </textarea>
+    </div>
       </div>
     </div>
 </template>
 
 <script>
 import allGalleriesService from './../services/all-galleries-service.js';
-
+import commentService from './../services/comment-service.js'
 export default {
     data(){
         return{
-            gallery: {}
+            gallery: {},
+            newComment: [],
+            userId: null
         }
     },
     beforeRouteEnter(to, form, next) {
@@ -45,8 +64,18 @@ export default {
             .then(response => {
                 next(vm => {                  
                     vm.gallery = response.data;
+                    vm.userId = response.user_id;
                 })
             })
     },
+    methods: {
+        addComment(){
+            commentService.addComment(this.$route.params.id, this.newComment)
+                .then(galleries => {
+                    this.gallery.comments.push(galleries);
+                    this.newComment = {}
+                })
+        }
+    }      
 }
 </script>

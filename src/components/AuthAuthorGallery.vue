@@ -1,7 +1,7 @@
 <template>
-    <div v-if="authAuthor">
-       <div class="row" v-for="gallery in authAuthor" :key="gallery.id">
-        <div class="col-lg-6 portfolio-item">
+    <div>
+       <div class="col-lg-6 col-lg-offset-4 portfolio-item" v-for="gallery in authAuthor" :key="gallery.id">
+        <div>
           <div class="card h-100">             
               <img  class="card-img-top"  :src="gallery.images[0].image_url" alt> 
             <div class="card-body">
@@ -14,7 +14,7 @@
             </div>
           </div>         
       </div> 
-      <button v-if="authAuthor > 1" type="button" @click="loadMore" class="btn btn-primary">Load more</button>
+      <button v-if="authAuthor.length > 1" type="button" @click="loadMore" class="btn btn-primary">Load more</button>
 
     </div>
     </div>
@@ -25,7 +25,7 @@ import allGalleriesService from './../services/all-galleries-service.js';
 export default {
     data(){
         return{
-            authAuthor: [],
+            authAuthor: {},
             page: 1
         }
     },
@@ -34,10 +34,9 @@ export default {
             .then(response => {
                 next(vm => {                  
                     vm.authAuthor = response.galleries.data;
-                    // console.log(response)
                 })
             })
-    },
+    },    
     methods: {        
         ...mapActions([ 'loadMoreAllGalleries']),
         

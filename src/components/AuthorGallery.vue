@@ -45,7 +45,6 @@ export default {
         
         loadMore(){
             this.page++;
-            console.log(this.authorGallery); 
             this.loadMoreAllGalleries(this.page);                 
         }
         
