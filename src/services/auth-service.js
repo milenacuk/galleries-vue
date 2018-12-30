@@ -32,15 +32,11 @@ class AuthService{
         }
         http.defaults.headers.common['Authorization'] = `Bearer ${token}`;
     }
-    // loginUser(data){
-    //     localStorage.setItem('token', data.token);
-    //     localStorage.setItem('user', JSON.stringify(data.user));
-    //     this.setAuthHeaders(data.token);
-    // }
+    
 }
 
 const checkForInitaialToken = authService => {
-    let token = localStorage.getItem('token');
+    const token = localStorage.getItem('token');
     if(token){
         authService.setAuthHeaders(token);
     }

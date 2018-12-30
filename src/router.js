@@ -6,6 +6,7 @@ import AllGalleries from './components/AllGalleries.vue';
 import SingleGallery from './components/SingleGallery.vue';
 import AuthorGallery from './components/AuthorGallery.vue';
 import AuthAuthorGallery from './components/AuthAuthorGallery.vue';
+import CreateGallery from './components/CreateGallery.vue';
 
 Vue.use(VueRouter);
 
@@ -56,6 +57,14 @@ const routes = [
         name: 'auth-author-gallery',
         meta: {
             auth:true
+        }
+    },
+    {
+        path: '/galleries',
+        component: CreateGallery,
+        name: 'create-gallery',
+        meta: {
+            auth: true
         }
     }
 ];

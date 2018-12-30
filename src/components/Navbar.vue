@@ -4,7 +4,7 @@
       <div class="container">
         <router-link class="navbar-brand" to="/">All Galleries</router-link>
         <router-link class="navbar-brand" :to="{name:'auth-author-gallery', params: {id:user.id}}" v-if="user" >My Galleries</router-link>
-        <router-link class="navbar-brand" to="#" v-if="user">Create New Gallery</router-link>
+        <router-link class="navbar-brand" :to="{name: 'create-gallery'}" v-if="user">Create New Gallery</router-link>
         <button
           class="navbar-toggler"
           type="button"

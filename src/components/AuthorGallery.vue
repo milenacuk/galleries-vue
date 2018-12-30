@@ -1,9 +1,7 @@
 <template>
-   <div>
-       <!-- {{authorGallery}} -->
-       
-    <div class="row" v-for="gallery in authorGallery" :key="gallery.id">
-        <div class="col-lg-6 portfolio-item">
+   <div>       
+    <div  class="col-lg-6 col-lg-offset-4 portfolio-item" v-for="gallery in authorGallery" :key="gallery.id">
+        <div>
           <div class="card h-100">             
               <img  class="card-img-top"  :src="gallery.images[0].image_url" alt> 
             <div class="card-body">
@@ -14,22 +12,23 @@
               <p class="card-text">{{ gallery.user.created_at | moment("dddd, MMMM Do YYYY, h:mm:ss a")}}</p>             
             
             </div>
-          </div>
-            <!-- <button v-if="nextPage" type="button" @click="loadMore" class="btn btn-primary">Load more</button> -->
-            <br>
-      </div>
-      
+          </div>           
+      </div>   
     </div>
+            <button v-if="authorGallery.length > 1" type="button" @click="loadMore" class="btn btn-primary">Load more</button>
    </div>
 </template>
 
 <script>
+import {  mapGetters, mapActions } from 'vuex'
+
 import allGalleriesService from './../services/all-galleries-service.js';
 
 export default {
     data(){
         return{
-            authorGallery: {}
+            authorGallery: {},
+            page:1
         }
     },
      beforeRouteEnter(to, form, next) {
@@ -37,9 +36,36 @@ export default {
             .then(response => {
                 next(vm => {                  
                     vm.authorGallery = response.galleries.data;
-                    console.log(response.galleries.data)
+                    // console.log(response.authorGallery.data)
                 })
             })
+    },
+    methods: {        
+        ...mapActions([ 'loadMoreAllGalleries']),
+        
+        loadMore(){
+            this.page++;
+            console.log(this.authorGallery); 
+            this.loadMoreAllGalleries(this.page);                 
+        }
+        
+    },
+    computed: {
+        ...mapGetters({           
+            nextPage :'getNextPageUrl',
+           
+        })
     }
 }
 </script>
+
+<style>
+.portfolio-item {
+  display: inline-block;
+  width: 50%;
+  margin-bottom: 40px;
+}
+.h-100 {
+  box-shadow: 10px 10px 5px #aaaaaa;
+}
+</style>

@@ -1,6 +1,5 @@
 <template>
     <div v-if="authAuthor">
-        <!-- {{authAuthor}} -->
        <div class="row" v-for="gallery in authAuthor" :key="gallery.id">
         <div class="col-lg-6 portfolio-item">
           <div class="card h-100">             
@@ -13,19 +12,21 @@
               <p class="card-text">{{ gallery.user.created_at | moment("dddd, MMMM Do YYYY, h:mm:ss a")}}</p>             
             
             </div>
-          </div>
-            
-            <br>
-      </div>     
+          </div>         
+      </div> 
+      <button v-if="authAuthor > 1" type="button" @click="loadMore" class="btn btn-primary">Load more</button>
+
     </div>
     </div>
 </template>
 <script>
+import {  mapGetters, mapActions } from 'vuex'
 import allGalleriesService from './../services/all-galleries-service.js';
 export default {
     data(){
         return{
-            authAuthor: ''
+            authAuthor: [],
+            page: 1
         }
     },
      beforeRouteEnter(to, form, next) {
@@ -36,6 +37,22 @@ export default {
                     // console.log(response)
                 })
             })
+    },
+    methods: {        
+        ...mapActions([ 'loadMoreAllGalleries']),
+        
+        loadMore(){
+            this.page++;
+            console.log(this.authAuthor); 
+            this.loadMoreAllGalleries(this.page);                 
+        }
+        
+    },
+    computed: {
+        ...mapGetters({           
+            nextPage :'getNextPageUrl',
+           
+        })
     }
 }
 </script>

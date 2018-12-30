@@ -4,8 +4,9 @@
      <form class="form-signin"
         @submit.prevent="submitForm"> 
             <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
-                <label class="sr-only">Email address</label>
-      <input 
+      <div class="form-group">
+        <label class="sr-only">Email address</label>
+        <input 
         type="email" 
         id="inputEmail" 
         class="form-control" 
@@ -13,16 +14,19 @@
         autofocus=""
         v-model="email"
         required
-      >
-      <label class="sr-only">Password</label>
-      <input 
+        >
+      </div>
+      <div class="form-group">
+        <label class="sr-only">Password</label>
+        <input 
         type="password"    
         id="inputPassword"   
         class="form-control" 
         placeholder="Password" 
         v-model="password"
         required
-      >      
+        >   
+      </div>   
       <button class="btn btn-lg btn-primary btn-block" 
       type="submit">Sign in</button>
       </form>

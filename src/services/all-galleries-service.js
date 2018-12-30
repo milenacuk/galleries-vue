@@ -21,6 +21,13 @@ class AllGalleriesService{
         return http.get(`authors-galeries/${id}`)
         .then(({data}) => data)
     }
+    createGallery({title,description,images}){
+        return http.post('galleries',{
+            title,
+            description,
+            images
+        })
+    }
 }
 
 const allGalleriesService = new AllGalleriesService();

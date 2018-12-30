@@ -55,6 +55,9 @@
         placeholder="Password" 
         v-model="password"
         required
+        minlength="8"
+        pattern="(?=.*\d).{8,}"
+        title="You need least one digit"
       > 
       <div v-if="errors">
         <error-form v-if="errors.password">{{ errors.password[0] }}</error-form>
@@ -76,12 +79,13 @@
       <div class="form-group">
         <input type="checkbox" class="form-check-input" v-model="terms" required>
         <label class="form-check-label" for="exampleCheck1">Accepted terms and conditions</label>
+        <div v-if="errors">
+            <form-error v-if="errors.terms">{{ errors.terms[0] }}</form-error>
+        </div>
     </div>
       <button class="btn btn-lg btn-primary btn-block" 
       type="submit">Register</button>
-      <!-- <ul v-if="errors">
-        <li v-for="(index,error) in errors" :key="index" class="alert p-3 mb-2 alert-danger rounded">{{ error }}</li>
-      </ul> -->
+      
     </form>
     </div>
 </template>

@@ -5,6 +5,9 @@ export default{
         allGalleries: [],
         errors: null,
         next_page_url: null,
+        // oneGallery: {
+        //     images:[]
+        // }
         // page: 1,
             
     },
@@ -22,26 +25,32 @@ export default{
             }catch(errors){
                 commit('SET_ERRORS', errors)
             }
-        },      
+        },  
+        // async storeGallery({commit},gallery){
+        //     try{
+        //         commit('STORE_GALLERY', await allGalleriesService.createGallery(gallery));
+        //     }catch(errors){
+        //         commit('SET_ERRORS',errors);
+        //     }
+            
+        // }    
     },
     mutations: {
-        SET_ALL_GALLERIES(state,payload){
-            
-            state.allGalleries = payload.data;
-            // console.log(state.allGalleries);            
+        SET_ALL_GALLERIES(state,payload){       
+            state.allGalleries = payload.data;                     
             state.next_page_url = payload.next_page_url;                  
         },
 
-        LOAD_MORE_ALL_GALLERIES(state,payload){
-            
-            // console.log(state.allGalleries);       
-
+        LOAD_MORE_ALL_GALLERIES(state,payload){                   
             state.allGalleries = state.allGalleries.concat(payload.data)                      
             state.next_page_url = payload.next_page_url;                  
         },
         SET_ERRORS(state,payload){
             state.errors = payload;
-        }
+        },
+        // STORE_GALLERY(state, payload){        
+        //     state.oneGallery.images = payload.data;           
+        // }
     },
     getters: {
         getGalleries(state){           
@@ -51,8 +60,7 @@ export default{
         },
         loadMoreGalleries(state){           
              return state.allGalleries;  
-            
-                    
+                               
         },
         getErrorsGalleries(state){
             return state.errors;
@@ -60,9 +68,8 @@ export default{
         getNextPageUrl(state){
             return state.next_page_url;
         },
-
-        // getCurrentPage(state) {
-        //     return state.current_page;
+        // getStoreGallery(state){
+        //     return state.oneGallery.images;
         // }
         
     }
